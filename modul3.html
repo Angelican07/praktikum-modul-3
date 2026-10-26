@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Modul 3 HTML DAN Bootstrap - Multimedia HTML</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            background-color: white;
+            width: 85%;
+            margin: 25px auto;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 8px;
+        }
+
+        .media-box {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        #drag1 {
+            width: 100px;
+            cursor: grab;
+        }
+
+        .drop-area {
+            width: 200px;
+            height: 100px;
+            border: 2px dashed #555;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <h1>MODUL 3 HTML Dan Bootstrap</h1>
+        <p>Audio, Video, YouTube dan API</p>
+    </header>
+
+
+    <!-- AUDIO -->
+    <section id="audio">
+
+        <h2>1. HTML Audio</h2>
+
+        <p>
+            Contoh penggunaan audio pada halaman web:
+        </p>
+
+        <div class="media-box">
+
+            <audio controls>
+                <source src="audio jeyii.mp3" type="audio/mpeg">
+
+                Browser kamu tidak mendukung elemen audio.
+            </audio>
+
+        </div>
+
+
+        <p>
+            HTML menyediakan elemen &lt;audio&gt; untuk menampilkan
+            dan memainkan file audio pada halaman web.
+        </p>
+
+    </section>
+
+
+    <!-- VIDEO -->
+    <section id="video">
+
+        <h2>2. HTML Video</h2>
+
+        <p>
+            Contoh penggunaan video pada halaman web:
+        </p>
+
+        <div class="media-box">
+
+            <video id="video1" width="500" controls>
+
+                <source src="fix video prak.mp4" type="video/mp4">
+
+                Browser kamu tidak mendukung video HTML5.
+
+            </video>
+
+            <br><br>
+
+
+
+        </div>
+
+        <p>
+            Elemen video digunakan untuk menampilkan video pada halaman web. Atribut controls digunakan agar pengguna dapat mengatur video.
+        </p>
+
+    </section>
+
+
+<!-- YOUTUBE -->
+<section id="youtube">
+
+    <h2>3. Video YouTube</h2>
+
+    <p>
+        Video YouTube ditampilkan menggunakan iframe. Untuk mengakses Video YouTube bisa klik "Tonton Video di YouTube"
+    </p>
+
+    <div class="media-box">
+
+        <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/0LS-G_0CG6g"
+            title="Video YouTube"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+        </iframe>
+
+    </div>
+        <p>
+            Video YouTube dapat ditampilkan menggunakan elemen iframe. Video dimasukkan melalui alamat embed dari YouTube.
+        </p>
+</section>
+
+
+    <!-- GEOLOCATION -->
+    <section id="geolocation">
+
+        <h2>4. Geolocation API</h2>
+
+        <p>
+            Geolocation API digunakan untuk mendapatkan posisi
+            geografis pengguna dengan persetujuan pengguna.
+        </p>
+
+        <button onclick="getLocation()">
+            Tampilkan Lokasi Saya
+        </button>
+
+        <p id="location">
+            Lokasi belum ditampilkan.
+        </p>
+
+    </section>
+
+
+    <!-- DRAG AND DROP -->
+    <section id="dragdrop">
+
+        <h2>5. Drag and Drop API</h2>
+
+        <p>
+            Drag and Drop API memungkinkan sebuah elemen dipindahkan
+            dengan cara drag and drop.
+        </p>
+
+        <div
+            id="box1"
+            class="drop-area"
+            ondrop="drop(event)"
+            ondragover="allowDrop(event)"
+        >
+
+            <img
+                id="drag1"
+                src="https://www.w3schools.com/html/img_w3slogo.gif"
+                draggable="true"
+                ondragstart="drag(event)"
+            >
+
+        </div>
+
+
+        <div
+            id="box2"
+            class="drop-area"
+            ondrop="drop(event)"
+            ondragover="allowDrop(event)"
+        >
+
+
+
+        </div>
+
+    </section>
+
+
+
+    <footer>
+
+        <p>Praktikum Multimedia - Modul 3</p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        // =========================
+        // VIDEO
+        // =========================
+
+        var myVideo = document.getElementById("video1");
+
+
+        function playPause() {
+
+            if (myVideo.paused) {
+
+                myVideo.play();
+
+            } else {
+
+                myVideo.pause();
+
+            }
+
+        }
+
+
+        function makeBig() {
+
+            myVideo.width = 700;
+
+        }
+
+
+        function makeSmall() {
+
+            myVideo.width = 300;
+
+        }
+
+
+        function makeNormal() {
+
+            myVideo.width = 500;
+
+        }
+
+
+        // =========================
+        // GEOLOCATION
+        // =========================
+
+        var locationText = document.getElementById("location");
+
+
+        function getLocation() {
+
+            if (navigator.geolocation) {
+
+                navigator.geolocation.getCurrentPosition(
+                    showPosition,
+                    showError
+                );
+
+            } else {
+
+                locationText.innerHTML =
+                    "Geolocation tidak didukung browser.";
+
+            }
+
+        }
+
+
+        function showPosition(position) {
+
+            locationText.innerHTML =
+                "Latitude: " +
+                position.coords.latitude +
+                "<br>" +
+                "Longitude: " +
+                position.coords.longitude +
+                "<br>" +
+                "Akurasi: " +
+                position.coords.accuracy +
+                " meter";
+
+        }
+
+
+        function showError(error) {
+
+            if (error.code === 1) {
+
+                locationText.innerHTML =
+                    "Izin lokasi ditolak.";
+
+            } else if (error.code === 2) {
+
+                locationText.innerHTML =
+                    "Lokasi tidak tersedia.";
+
+            } else if (error.code === 3) {
+
+                locationText.innerHTML =
+                    "Waktu permintaan lokasi habis.";
+
+            } else {
+
+                locationText.innerHTML =
+                    "Terjadi kesalahan.";
+
+            }
+
+        }
+
+
+        // =========================
+        // DRAG AND DROP
+        // =========================
+
+        function allowDrop(ev) {
+
+            ev.preventDefault();
+
+        }
+
+
+        function drag(ev) {
+
+            ev.dataTransfer.setData(
+                "text",
+                ev.target.id
+            );
+
+        }
+
+
+        function drop(ev) {
+
+            ev.preventDefault();
+
+            var data =
+                ev.dataTransfer.getData("text");
+
+            ev.target.appendChild(
+                document.getElementById(data)
+            );
+
+        }
+
+    </script>
+
+<footer class="footer">
+    <p>Nama: Angelita Tandaju</p>
+    <p>NIM: 240211060001</p>
+</footer>
+
+<style>
+    .footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 15px;
+        margin-top: 30px;
+        font-family: Arial, sans-serif;
+    }
+
+    .footer p {
+        margin: 5px 0;
+    }
+</style>
+
+</body>
+
+</html>
